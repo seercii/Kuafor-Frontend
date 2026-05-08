@@ -49,17 +49,19 @@ export default function Appointment() {
 
   useEffect(() => {
     if (!slug) return;
-    axios.get(`http://localhost:3000/appointments/shop/${slug}`).then((res) => {
-      setShopInfo(res.data);
-      setServices(res.data.services);
-    });
+    axios
+      .get(`https://kuafor-backend.onrender.com//appointments/shop/${slug}`)
+      .then((res) => {
+        setShopInfo(res.data);
+        setServices(res.data.services);
+      });
   }, [slug]);
 
   useEffect(() => {
     if (!shopInfo?.id || !selectedDate) return;
     axios
       .get(
-        `http://localhost:3000/appointments/busy-slots?shopId=${shopInfo.id}&date=${selectedDate}`,
+        `https://kuafor-backend.onrender.com//appointments/busy-slots?shopId=${shopInfo.id}&date=${selectedDate}`,
       )
       .then((res) => setBookedSlots(res.data));
   }, [selectedDate, shopInfo]);
@@ -71,7 +73,7 @@ export default function Appointment() {
     setHistoryLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:3000/appointments/customer-history/${slug}/${historyPhone}`,
+        `https://kuafor-backend.onrender.com//appointments/customer-history/${slug}/${historyPhone}`,
       );
       setCustomerHistory(res.data);
     } catch (err) {
@@ -86,10 +88,13 @@ export default function Appointment() {
     if (!window.confirm("Bu randevuyu iptal etmek istediğinize emin misiniz?"))
       return;
     try {
-      await axios.patch(`http://localhost:3000/appointments/${id}/status`, {
-        status: "CANCELLED",
-        rejectionReason: "Müşteri tarafından iptal edildi.",
-      });
+      await axios.patch(
+        `https://kuafor-backend.onrender.com//appointments/${id}/status`,
+        {
+          status: "CANCELLED",
+          rejectionReason: "Müşteri tarafından iptal edildi.",
+        },
+      );
       alert("Randevunuz iptal edildi.");
       fetchHistory(); // Listeyi tazele
     } catch (err) {
@@ -129,7 +134,7 @@ export default function Appointment() {
       const startTime = new Date(
         `${selectedDate}T${selectedTime}:00`,
       ).toISOString();
-      await axios.post("http://localhost:3000/appointments", {
+      await axios.post("https://kuafor-backend.onrender.com//appointments", {
         shopSlug: slug,
         startTime,
         serviceIds: selectedServices,

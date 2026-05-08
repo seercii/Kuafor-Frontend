@@ -28,19 +28,19 @@ export default function Dashboard() {
     try {
       // 1. Randevuları çek
       const appRes = await axios.get(
-        `http://localhost:3000/appointments/daily/${shopId}?date=${selectedDate}`,
+        `https://kuafor-backend.onrender.com//appointments/daily/${shopId}?date=${selectedDate}`,
       );
       setAppointments(appRes.data);
 
       // 2. İstatistikleri çek
       const statsRes = await axios.get(
-        `http://localhost:3000/appointments/stats/${shopId}?date=${selectedDate}`,
+        `https://kuafor-backend.onrender.com//appointments/stats/${shopId}?date=${selectedDate}`,
       );
       setStats(statsRes.data);
 
       // 3. Hizmet isimlerini eşleştirmek için dükkan hizmetlerini çek
       const srvRes = await axios.get(
-        `http://localhost:3000/services/shop/${shopId}`,
+        `https://kuafor-backend.onrender.com//services/shop/${shopId}`,
       );
       setServices(srvRes.data);
     } catch (err) {
@@ -85,10 +85,13 @@ export default function Dashboard() {
 
     try {
       // Backend'e status ve varsa rejectionReason gönderiyoruz
-      await axios.patch(`http://localhost:3000/appointments/${id}/status`, {
-        status,
-        rejectionReason,
-      });
+      await axios.patch(
+        `https://kuafor-backend.onrender.com//appointments/${id}/status`,
+        {
+          status,
+          rejectionReason,
+        },
+      );
       alert(successMessage);
       fetchData();
     } catch (err) {

@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3000/auth/login",
+        "https://kuafor-backend.onrender.com//auth/login",
         formData,
       );
       localStorage.setItem("token", res.data.access_token);

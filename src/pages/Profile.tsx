@@ -32,7 +32,7 @@ export default function Profile() {
   const fetchMyServices = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/services/shop/${shopId}`,
+        `https://kuafor-backend.onrender.com//services/shop/${shopId}`,
       );
       setMyServices(res.data);
     } catch (error) {
@@ -43,12 +43,15 @@ export default function Profile() {
   // 2. Yeni Hizmet Ekleme İşlemi
   const handleAddService = async (service: (typeof PREDEFINED_SERVICES)[0]) => {
     try {
-      const res = await axios.post("http://localhost:3000/services", {
-        name: service.name,
-        price: service.price,
-        duration: service.duration,
-        shopId: shopId,
-      });
+      const res = await axios.post(
+        "https://kuafor-backend.onrender.com//services",
+        {
+          name: service.name,
+          price: service.price,
+          duration: service.duration,
+          shopId: shopId,
+        },
+      );
 
       // Backend'den başarılı cevap gelince listeyi ANINDA güncelle (Sayfa yenilemeye gerek kalmaz)
       setMyServices([...myServices, res.data]);
@@ -77,7 +80,9 @@ export default function Profile() {
 
     if (isConfirmed) {
       try {
-        await axios.delete(`http://localhost:3000/auth/delete/${shopId}`);
+        await axios.delete(
+          `https://kuafor-backend.onrender.com//auth/delete/${shopId}`,
+        );
         localStorage.clear(); // Tarayıcı hafızasını sıfırla
         alert("Hesabın ve tüm verilerin başarıyla silindi. Elveda! 👋");
         navigate("/register"); // Kayıt ekranına postalıyoruz

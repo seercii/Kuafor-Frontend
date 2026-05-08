@@ -19,7 +19,10 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/auth/register", formData);
+      await axios.post(
+        "https://kuafor-backend.onrender.com//auth/register",
+        formData,
+      );
       alert("Dükkan başarıyla oluşturuldu! Şimdi giriş yapabilirsin.");
       navigate("/login");
     } catch (err) {

@@ -285,9 +285,10 @@ export default function Appointment() {
               </h3>
               <div className="flex gap-2">
                 <input
-                  type="text"
+                  type="tel"
                   placeholder="Telefon numaranızı girin"
                   value={historyPhone}
+                  maxLength={11}
                   onChange={(e) =>
                     setHistoryPhone(e.target.value.replace(/\D/g, ""))
                   }

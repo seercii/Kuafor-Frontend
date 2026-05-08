@@ -50,7 +50,7 @@ export default function Appointment() {
   useEffect(() => {
     if (!slug) return;
     axios
-      .get(`https://kuafor-backend.onrender.com//appointments/shop/${slug}`)
+      .get(`https://kuafor-backend.onrender.com/appointments/shop/${slug}`)
       .then((res) => {
         setShopInfo(res.data);
         setServices(res.data.services);
@@ -61,7 +61,7 @@ export default function Appointment() {
     if (!shopInfo?.id || !selectedDate) return;
     axios
       .get(
-        `https://kuafor-backend.onrender.com//appointments/busy-slots?shopId=${shopInfo.id}&date=${selectedDate}`,
+        `https://kuafor-backend.onrender.com/appointments/busy-slots?shopId=${shopInfo.id}&date=${selectedDate}`,
       )
       .then((res) => setBookedSlots(res.data));
   }, [selectedDate, shopInfo]);
@@ -73,7 +73,7 @@ export default function Appointment() {
     setHistoryLoading(true);
     try {
       const res = await axios.get(
-        `https://kuafor-backend.onrender.com//appointments/customer-history/${slug}/${historyPhone}`,
+        `https://kuafor-backend.onrender.com/appointments/customer-history/${slug}/${historyPhone}`,
       );
       setCustomerHistory(res.data);
     } catch (err) {
@@ -89,7 +89,7 @@ export default function Appointment() {
       return;
     try {
       await axios.patch(
-        `https://kuafor-backend.onrender.com//appointments/${id}/status`,
+        `https://kuafor-backend.onrender.com/appointments/${id}/status`,
         {
           status: "CANCELLED",
           rejectionReason: "Müşteri tarafından iptal edildi.",
@@ -134,7 +134,7 @@ export default function Appointment() {
       const startTime = new Date(
         `${selectedDate}T${selectedTime}:00`,
       ).toISOString();
-      await axios.post("https://kuafor-backend.onrender.com//appointments", {
+      await axios.post("https://kuafor-backend.onrender.com/appointments", {
         shopSlug: slug,
         startTime,
         serviceIds: selectedServices,

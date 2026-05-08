@@ -20,7 +20,7 @@ export default function Register() {
     e.preventDefault();
     try {
       await axios.post(
-        "https://kuafor-backend.onrender.com//auth/register",
+        "https://kuafor-backend.onrender.com/auth/register",
         formData,
       );
       alert("Dükkan başarıyla oluşturuldu! Şimdi giriş yapabilirsin.");

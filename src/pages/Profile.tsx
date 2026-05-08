@@ -32,7 +32,7 @@ export default function Profile() {
   const fetchMyServices = async () => {
     try {
       const res = await axios.get(
-        `https://kuafor-backend.onrender.com//services/shop/${shopId}`,
+        `https://kuafor-backend.onrender.com/services/shop/${shopId}`,
       );
       setMyServices(res.data);
     } catch (error) {
@@ -44,7 +44,7 @@ export default function Profile() {
   const handleAddService = async (service: (typeof PREDEFINED_SERVICES)[0]) => {
     try {
       const res = await axios.post(
-        "https://kuafor-backend.onrender.com//services",
+        "https://kuafor-backend.onrender.com/services",
         {
           name: service.name,
           price: service.price,
@@ -81,7 +81,7 @@ export default function Profile() {
     if (isConfirmed) {
       try {
         await axios.delete(
-          `https://kuafor-backend.onrender.com//auth/delete/${shopId}`,
+          `https://kuafor-backend.onrender.com/auth/delete/${shopId}`,
         );
         localStorage.clear(); // Tarayıcı hafızasını sıfırla
         alert("Hesabın ve tüm verilerin başarıyla silindi. Elveda! 👋");

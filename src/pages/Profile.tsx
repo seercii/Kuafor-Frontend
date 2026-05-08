@@ -18,7 +18,7 @@ export default function Profile() {
   const [copied, setCopied] = useState(false);
 
   // Müşteriye atılacak randevu linki (Frontend portuna göre 5173 veya 5174)
-  const appointmentLink = `http://localhost:5173/randevu/${shopSlug}`;
+  const appointmentLink = `https://kuafor-backend.onrender.com:5173/randevu/${shopSlug}`;
 
   // 1. Dükkanın daha önce eklediği hizmetleri backend'den çekiyoruz
   useEffect(() => {
